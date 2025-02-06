@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchPostList } from "../api/post";
+import { fetchPostList } from "@api/post";
 
 export const useFetchPostList = (search?: string) => {
   const { data, isLoading, error, refetch } = useQuery({

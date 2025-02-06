@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { addComment, type AddCommentData } from "../api/comment";
+import { addComment, type AddCommentData } from "@api/comment";
 import { useState } from "react";
 
 export const useAddComment = (postId: number) => {

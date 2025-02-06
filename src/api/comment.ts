@@ -1,4 +1,5 @@
-import type { DetailRes, ListRes } from "./base.types";
+import { fetchApi } from "@utils/fetchUtils";
+import type { DetailRes, ListRes } from "@api/base.types";
 
 export type Comment = {
   id: number;
@@ -11,30 +12,18 @@ export type Comment = {
 export type AddCommentData = Pick<Comment, "content" | "nickname" | "post_id">;
 
 export const fetchCommentList = async (postId: number) => {
-  const res = await fetch(`/api/comment?postId=${postId}`);
-  if (!res.ok) {
-    throw new Error("Failed to fetch comment list");
-  }
-  return res.json() as Promise<ListRes<Comment>>;
+  return fetchApi<ListRes<Comment>>(`/api/comment?postId=${postId}`);
 };
 
 export const addComment = async (data: AddCommentData) => {
-  const res = await fetch(`/api/comment`, {
+  return fetchApi<DetailRes<Comment>>(`/api/comment`, {
     method: "POST",
     body: JSON.stringify(data),
   });
-  if (!res.ok) {
-    throw new Error("Failed to add comment");
-  }
-  return res.json() as Promise<DetailRes<Comment>>;
 };
 
 export const deleteComment = async (commentId: number) => {
-  const res = await fetch(`/api/comment/${commentId}`, {
+  return fetchApi<DetailRes<Comment>>(`/api/comment/${commentId}`, {
     method: "DELETE",
   });
-  if (!res.ok) {
-    throw new Error("Failed to delete comment");
-  }
-  return res.json() as Promise<DetailRes<Comment>>;
 };

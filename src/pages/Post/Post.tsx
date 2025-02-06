@@ -1,7 +1,7 @@
 import List from "./List";
 import Upload from "./Upload";
 import Search from "./Search";
-import { useFetchPostList } from "../../hooks/useFetchPostList";
+import { useFetchPostList } from "@hooks/useFetchPostList";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 

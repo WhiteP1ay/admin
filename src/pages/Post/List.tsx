@@ -1,6 +1,6 @@
 import Markdown from "react-markdown";
-import { Post } from "../../api/post";
-import Button from "../../components/Button";
+import { Post } from "@api/post";
+import Button from "@components/Button";
 
 interface ListProps {
   handleView?: (id: number) => void;

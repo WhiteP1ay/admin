@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchCommentList } from "../api/comment";
+import { fetchCommentList } from "@api/comment";
 
 export const useFetchComment = (postId: number) => {
   const { data } = useQuery({

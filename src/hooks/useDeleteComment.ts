@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { deleteComment } from "../api/comment";
+import { deleteComment } from "@api/comment";
 
 export const useDeleteComment = (postId: number) => {
   const { mutateAsync, isPending } = useMutation({

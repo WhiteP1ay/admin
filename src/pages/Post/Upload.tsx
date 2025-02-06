@@ -1,5 +1,5 @@
-import Button from "../../components/Button";
-import { useUploadPost } from "../../hooks/useUploadPost";
+import Button from "@components/Button";
+import { useUploadPost } from "@hooks/useUploadPost";
 
 const Upload = () => {
   const { files, setFiles, handleUpload } = useUploadPost();
