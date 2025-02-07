@@ -4,7 +4,7 @@ import { lazy } from "react";
 
 const PostDetail = lazy(() => import("../pages/PostDetail/PostDetail"));
 const Post = lazy(() => import("../pages/Post/Post"));
-
+const Login = lazy(() => import("../pages/Login/Login"));
 export const routes: RouteObject[] = [
   {
     path: "/",
@@ -17,6 +17,10 @@ export const routes: RouteObject[] = [
       {
         path: "/:postId",
         element: <PostDetail />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
       },
       {
         path: "*",

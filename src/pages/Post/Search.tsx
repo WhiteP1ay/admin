@@ -1,4 +1,4 @@
-import Button from "@components/Button";
+import { Button, Input } from "antd";
 
 interface SearchProps {
   search: string;
@@ -9,10 +9,9 @@ interface SearchProps {
 const Search = ({ search, onChange, onSearch }: SearchProps) => {
   return (
     <div className="flex items-center justify-center gap-2">
-      <input
-        className="border-2 border-gray-300 rounded-md p-2"
+      <Input
         type="text"
-        placeholder="Search"
+        placeholder="按标题搜索"
         value={search}
         onChange={(e) => onChange(e.target.value)}
         onKeyDown={(e) => {
@@ -21,7 +20,9 @@ const Search = ({ search, onChange, onSearch }: SearchProps) => {
           }
         }}
       />
-      <Button onClick={onSearch}>Search</Button>
+      <Button type="primary" onClick={onSearch}>
+        搜索
+      </Button>
     </div>
   );
 };

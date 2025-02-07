@@ -14,3 +14,9 @@ export const fetchPostList = async (search?: string) => {
 export const fetchPostDetail = async (id: number) => {
   return fetchApi<DetailRes<Post>>(`/api/post/${id}`);
 };
+
+export const removePost = async (id: number) => {
+  return fetchApi<DetailRes<Post>>(`/api/post/${id}`, {
+    method: "DELETE",
+  });
+};

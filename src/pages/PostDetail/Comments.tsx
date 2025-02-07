@@ -1,4 +1,4 @@
-import Button from "../../components/Button";
+import { Button } from "antd";
 import { useAddComment } from "../../hooks/useAddComment";
 import { useFetchComment } from "../../hooks/useFetchComment";
 import { useDeleteComment } from "../../hooks/useDeleteComment";
@@ -15,25 +15,37 @@ const Comments = () => {
 
   return (
     <>
-      <div className="flex flex-col gap-2 w-[800px]">
-        {commentData?.data.map((comment) => (
-          <div
-            className="flex justify-between gap-2 p-2 border border-gray-300 rounded-md"
-            key={comment.id}
-          >
-            <div>
-              <div className="text-sm text-gray-500">
-                {comment.nickname} 发表于 {formatTime(comment.created_at)}
-              </div>
-              <div className="mt-1">{comment.content}</div>
-            </div>
+      {commentData?.data.length === 0 ? (
+        <div className="flex justify-center items-center h-40">
+          <span className="text-gray-500">暂无评论</span>
+        </div>
+      ) : (
+        <>
+          <div className="flex flex-col gap-2 w-[800px]">
+            {commentData?.data.map((comment) => (
+              <div
+                className="flex justify-between gap-2 p-2 border border-gray-300 rounded-md"
+                key={comment.id}
+              >
+                <div>
+                  <div className="text-sm text-gray-500">
+                    {comment.nickname} 发表于 {formatTime(comment.createdAt)}
+                  </div>
+                  <div className="mt-1">{comment.content}</div>
+                </div>
 
-            <Button type="red" onClick={() => handleDeleteComment(comment.id)}>
-              删除
-            </Button>
+                <Button
+                  type="primary"
+                  danger
+                  onClick={() => handleDeleteComment(comment.id)}
+                >
+                  删除
+                </Button>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+        </>
+      )}
       <form className="flex flex-col gap-2 w-[800px] items-end">
         <input
           className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -52,6 +64,7 @@ const Comments = () => {
         ></textarea>
 
         <Button
+          type="primary"
           onClick={(e) => {
             e.preventDefault();
             if (data.nickname === "" || data.content === "") {

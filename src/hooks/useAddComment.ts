@@ -6,7 +6,7 @@ export const useAddComment = (postId: number) => {
   const [data, setData] = useState<AddCommentData>({
     nickname: "",
     content: "",
-    post_id: postId,
+    postId,
   });
 
   const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {

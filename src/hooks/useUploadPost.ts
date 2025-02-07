@@ -2,6 +2,7 @@ import { useState } from "react";
 
 export const useUploadPost = () => {
   const [files, setFiles] = useState<File[]>([]);
+  const [category, setCategory] = useState<number | undefined>(undefined);
 
   const handleUpload = async () => {
     const formData = new FormData();
@@ -9,7 +10,7 @@ export const useUploadPost = () => {
       formData.append("files", file);
     });
 
-    const res = await fetch("/api/post/import", {
+    const res = await fetch(`/api/post/import?categoryId=${category}`, {
       method: "POST",
       body: formData,
     });
@@ -21,5 +22,5 @@ export const useUploadPost = () => {
     return res.json();
   };
 
-  return { files, setFiles, handleUpload };
+  return { files, setFiles, handleUpload, category, setCategory };
 };

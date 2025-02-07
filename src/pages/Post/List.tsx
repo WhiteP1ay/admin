@@ -1,6 +1,6 @@
 import Markdown from "react-markdown";
 import { Post } from "@api/post";
-import Button from "@components/Button";
+import { Button } from "antd";
 
 interface ListProps {
   handleView?: (id: number) => void;
@@ -39,7 +39,8 @@ const List = ({ handleView, handleDelete, data }: ListProps) => {
               onClick={() => {
                 handleDelete?.(post.id);
               }}
-              type="red"
+              type="primary"
+              danger
             >
               删除
             </Button>
