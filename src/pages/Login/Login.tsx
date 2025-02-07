@@ -1,30 +1,8 @@
-import { Button, Form, Input, message } from "antd";
-import { useNavigate } from "react-router-dom";
-import { login } from "@api/login";
+import { Button, Form, Input } from "antd";
+import { useLogin } from "@hooks/useLogin";
 
 const Login = () => {
-  const navigate = useNavigate();
-  const [form] = Form.useForm();
-
-  const onFinish = async (values: { username: string; password: string }) => {
-    try {
-      const res = (await login(values)) as {
-        success: boolean;
-        error: string;
-        token: string;
-      };
-
-      if (res.success) {
-        message.success("登录成功");
-        navigate("/");
-        localStorage.setItem("token", "Bearer " + res.token);
-      } else {
-        message.error(res.error);
-      }
-    } catch {
-      message.error("登录失败");
-    }
-  };
+  const { form, onFinish } = useLogin(Form);
 
   return (
     <div className="h-screen w-screen flex items-center justify-center bg-gray-100">

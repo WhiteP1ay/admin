@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { fetchApi } from "@utils/fetchUtils";
 
 export const useUploadPost = () => {
   const [files, setFiles] = useState<File[]>([]);
@@ -10,16 +11,12 @@ export const useUploadPost = () => {
       formData.append("files", file);
     });
 
-    const res = await fetch(`/api/post/import?categoryId=${category}`, {
+    const res = await fetchApi(`/api/post/import?categoryId=${category}`, {
       method: "POST",
       body: formData,
     });
 
-    if (!res.ok) {
-      throw new Error("Failed to upload files");
-    }
-
-    return res.json();
+    return res;
   };
 
   return { files, setFiles, handleUpload, category, setCategory };
