@@ -9,8 +9,8 @@ const Comments = () => {
   const { postId } = useParams();
 
   const { handleContentChange, handleNicknameChange, handleAddComment, data } =
-    useAddComment(Number(postId));
-  const { data: commentData } = useFetchComment(Number(postId));
+    useAddComment(Number(postId), "post");
+  const { data: commentData } = useFetchComment(Number(postId), "post");
   const { handleDeleteComment } = useDeleteComment(Number(postId));
 
   return (

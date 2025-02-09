@@ -2,11 +2,12 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { addComment, type AddCommentData } from "@api/comment";
 import { useState } from "react";
 
-export const useAddComment = (postId: number) => {
+export const useAddComment = (targetId: number, type: "post" | "sentence") => {
   const [data, setData] = useState<AddCommentData>({
     nickname: "",
     content: "",
-    postId,
+    targetId,
+    type,
   });
 
   const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -21,7 +22,12 @@ export const useAddComment = (postId: number) => {
 
   const handleAddComment = async () => {
     await mutateAsync();
-    queryClient.invalidateQueries({ queryKey: ["comment", postId] });
+    queryClient.invalidateQueries({ queryKey: ["comment", targetId, type] });
+    setData((prev) => ({
+      ...prev,
+      content: "",
+      nickname: "",
+    }));
   };
 
   const { mutateAsync, isPending } = useMutation({

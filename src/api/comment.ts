@@ -3,16 +3,34 @@ import type { DetailRes, ListRes } from "@api/base.types";
 
 export type Comment = {
   id: number;
-  postId: number;
+  postId?: number;
+  sentenceId?: number;
   content: string;
   nickname?: string;
   createdAt: Date;
 };
 
-export type AddCommentData = Pick<Comment, "content" | "nickname" | "postId">;
+export type AddCommentData = {
+  content: string;
+  nickname?: string;
+  targetId: number;
+  type: "post" | "sentence";
+};
 
-export const fetchCommentList = async (postId: number) => {
-  return fetchApi<ListRes<Comment>>(`/api/comment?postId=${postId}`);
+export const fetchPostCommentList = async (targetId: number) => {
+  return fetchApi<ListRes<Comment>>(
+    `/api/comment?targetId=${targetId}&type=post`
+  );
+};
+
+export const fetchSentenceCommentList = async (targetId: number) => {
+  return fetchApi<ListRes<Comment>>(
+    `/api/comment?targetId=${targetId}&type=sentence`
+  );
+};
+
+export const fetchAllComment = async (type: "post" | "sentence" | "all") => {
+  return fetchApi<ListRes<Comment>>(`/api/comment?type=${type}`);
 };
 
 export const addComment = async (data: AddCommentData) => {
