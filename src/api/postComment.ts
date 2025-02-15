@@ -13,14 +13,11 @@ export type Comment = {
 export type AddCommentData = {
   content: string;
   nickname?: string;
-  targetId: number;
-  type: "post" | "sentence";
+  postId: number;
 };
 
-export const fetchPostCommentList = async (targetId: number) => {
-  return fetchApi<ListRes<Comment>>(
-    `/api/comment?targetId=${targetId}&type=post`
-  );
+export const fetchPostCommentList = async (postId: number) => {
+  return fetchApi<ListRes<Comment>>(`/api/comment?postId=${postId}`);
 };
 
 export const fetchSentenceCommentList = async (targetId: number) => {
@@ -29,18 +26,18 @@ export const fetchSentenceCommentList = async (targetId: number) => {
   );
 };
 
-export const fetchAllComment = async (type: "post" | "sentence" | "all") => {
-  return fetchApi<ListRes<Comment>>(`/api/comment?type=${type}`);
+export const fetchAllPostComment = async () => {
+  return fetchApi<ListRes<Comment>>(`/api/comment`);
 };
 
-export const addComment = async (data: AddCommentData) => {
+export const addPostComment = async (data: AddCommentData) => {
   return fetchApi<DetailRes<Comment>>(`/api/comment`, {
     method: "POST",
     body: JSON.stringify(data),
   });
 };
 
-export const deleteComment = async (commentId: number) => {
+export const deletePostComment = async (commentId: number) => {
   return fetchApi<DetailRes<Comment>>(`/api/comment/${commentId}`, {
     method: "DELETE",
   });

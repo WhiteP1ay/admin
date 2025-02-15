@@ -1,7 +1,9 @@
 import { Button } from "antd";
-import { useAddComment } from "../../hooks/useAddComment";
-import { useFetchComment } from "../../hooks/useFetchComment";
-import { useDeleteComment } from "../../hooks/useDeleteComment";
+import {
+  useAddPostComment,
+  useFetchPostComment,
+  useDeletePostComment,
+} from "@hooks/usePostComment";
 import { formatTime } from "../../utils/formatTime";
 import { useParams } from "react-router-dom";
 
@@ -9,9 +11,10 @@ const Comments = () => {
   const { postId } = useParams();
 
   const { handleContentChange, handleNicknameChange, handleAddComment, data } =
-    useAddComment(Number(postId), "post");
-  const { data: commentData } = useFetchComment(Number(postId), "post");
-  const { handleDeleteComment } = useDeleteComment(Number(postId));
+    useAddPostComment(Number(postId));
+
+  const { data: commentData } = useFetchPostComment(Number(postId));
+  const { handleDeleteComment } = useDeletePostComment(Number(postId));
 
   return (
     <>

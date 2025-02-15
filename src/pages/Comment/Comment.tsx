@@ -1,7 +1,7 @@
 import { Button, Radio, Space, Table, Popconfirm } from "antd";
 import { formatTime } from "@utils/formatTime";
 import { useCommentManagement } from "../../hooks/useCommentManagement";
-import type { Comment } from "@api/comment";
+import type { Comment } from "@api/postComment";
 
 const CommentPage = () => {
   const { filterType, handleFilterChange, handleDelete, filteredData } =
@@ -63,7 +63,6 @@ const CommentPage = () => {
       <Space direction="vertical" size="large" className="w-full">
         <div className="flex justify-between items-center">
           <Radio.Group onChange={handleFilterChange} value={filterType}>
-            <Radio.Button value="all">全部评论</Radio.Button>
             <Radio.Button value="post">文章评论</Radio.Button>
             <Radio.Button value="sentence">句子评论</Radio.Button>
           </Radio.Group>
