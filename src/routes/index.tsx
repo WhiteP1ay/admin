@@ -7,6 +7,7 @@ const Post = lazy(() => import("../pages/Post/Post"));
 const Login = lazy(() => import("../pages/Login/Login"));
 const Comment = lazy(() => import("../pages/Comment/Comment"));
 const Sentence = lazy(() => import("../pages/Sentence/Sentence"));
+const SentenceDetail = lazy(() => import("../pages/SentenceDetail/SentenceDetail"));
 
 export const routes: RouteObject[] = [
   {
@@ -24,6 +25,10 @@ export const routes: RouteObject[] = [
       {
         path: "/sentence",
         element: <Sentence />,
+      },
+      {
+        path: "/sentence/:id",
+        element: <SentenceDetail />,
       },
       {
         path: "/:postId",

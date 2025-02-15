@@ -12,11 +12,11 @@ const MainLayout = () => {
           <Button type="link" onClick={() => goTo("/")}>
             文章管理
           </Button>
-          <Button type="link" onClick={() => goTo("/comment")}>
-            评论管理
-          </Button>
           <Button type="link" onClick={() => goTo("/sentence")}>
             一句话管理
+          </Button>
+          <Button type="link" onClick={() => goTo("/comment")}>
+            评论管理
           </Button>
         </div>
         <div>
